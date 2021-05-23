@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const PORT =3001;
 const app = express();
 
 // mongoose.connect("", {
@@ -18,8 +19,8 @@ const app = express();
 app.get('/jayavel' ,function(req,res){
     res.send("hii")
 })
-app.listen(3001, "localhost", () => {
-    console.log(`Server running at http://localhost:3001/`);
+app.listen(PORT, "localhost", () => {
+    console.log(`Server running at http://localhost:${PORT}/`);
   });
   
 // app.listen(3001)
