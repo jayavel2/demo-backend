@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DB_URL= "mongodb+srv://jayavel:Jayavelmongodb@123@cluster0.6elew.mongodb.net/jayavel?retryWrites=true&w=majority";
-
+app.use('/api/userModel',require('./API/User'))
 console.log("----------------",PORT,DB_URL)
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
