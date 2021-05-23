@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT;
-const DB_URL=process.env.DB_URL;
+const PORT = process.env.PORT || 3001;
+const DB_URL= "mongodb+srv://jayavel:Jayavelmongodb@123@cluster0.6elew.mongodb.net/jayavel?retryWrites=true&w=majority";
 
+console.log("----------------",PORT,DB_URL)
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
