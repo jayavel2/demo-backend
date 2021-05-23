@@ -19,8 +19,6 @@ const PORT =process.env.PORT;
 app.get('/jayavel' ,function(req,res){
     res.send("hii")
 })
-app.listen(PORT, "localhost", () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
-  });
+app.listen(PORT);
   
 // app.listen(3001)
