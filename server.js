@@ -1,25 +1,33 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
-const PORT = process.env.PORT || 3001;
-const DB_URL= "mongodb+srv://jayavel:Jayavelmongodb@123@cluster0.6elew.mongodb.net/jayavel?retryWrites=true&w=majority";
-app.use('/api/userModel',require('./API/User'))
-console.log("----------------",PORT,DB_URL)
-mongoose.connect(DB_URL, {
-    useNewUrlParser: true,
+const User = require('./DB/user');
+const URI ="";
+const Port = process.env.Port || 3000;
+
+const connectDB = async () => {
+  await mongoose.connect(URI, {
     useUnifiedTopology: true,
-    useCreateIndex: true,
-  }).then(() => {
-    console.log("Successfully connected to the database");
-  }).catch(err => {
-      console.log('Could not connect to the database. Exiting now...', err);
-      process.exit();
+    useNewUrlParser: true
+  });
+  console.log('db connected..!');
+};
+
+connectDB();
+
+app.use(express.json({ extended: false }));
+
+
+
+app.post('/name', async (req, res) => {
+    const { firstname, lastname } = req.body;
+    let user = {};
+    user.firstname = firstname;
+    user.lastname = lastname;
+    console.log(user);
+    let userModel = new User(user);
+    await userModel.save();
+    res.json(userModel);
   });
 
-
-app.get('/jayavel' ,function(req,res){
-    res.send("hii")
-})
-app.listen(PORT);
-  
-// app.listen(3001)
+app.listen(Port, () => console.log('Server started'));
