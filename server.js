@@ -17,7 +17,10 @@ connectDB();
 
 app.use(express.json({ extended: false }));
 
-
+app.get('/', function(req,res){
+ res.send("api running") 
+}
+ )
 
 app.post('/name', async (req, res) => {
     const { firstname, lastname } = req.body;
